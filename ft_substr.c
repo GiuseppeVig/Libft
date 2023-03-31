@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:49:47 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/03/29 15:11:59 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:11:25 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	while (i < len)
 	{
-		substr[i] = s[start];
+		substr[i] = s[start + i];
 		i ++;
-		start ++;
 	}
 	substr[i] = '\0';
 	return (substr);
