@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:40:48 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/03/29 18:11:46 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/03/31 20:08:02 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-
-	i = 0;
-	while (!lst->next)
+	if (!lst)
+		return ;
+	while (lst->next != NULL)
 	{
 		(f)(lst->content);
-		lst = lst->content;
+		lst = lst->next;
 	}
-	(f)((lst + i)->content);
+	(f)(lst->content);
 }

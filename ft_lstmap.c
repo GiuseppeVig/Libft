@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:44:58 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/03/29 14:37:57 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/03/31 20:34:19 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,25 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*newlist;
-	size_t	i;
+	t_list	*temp;
 
-	newlist = (t_list *)malloc(sizeof(t_list) * ft_lstsize(lst));
-	i = 0;
-	if (!(lst->content))
+	if (lst == NULL)
 		return (0);
-	while (!(lst + i)->next)
+	temp = ft_lstnew((f)(lst->content));
+	if (temp == NULL)
+		return (NULL);
+	newlist = temp;
+	lst = lst->next;
+	while (lst != NULL)
 	{
-		(f)((lst + i)->content);
-		ft_lstadd_back(&newlist, (lst + i));
-		i ++;
+		temp = ft_lstnew((f)(lst->content));
+		if (temp == NULL)
+		{
+			ft_lstclear(&lst, del);
+			return (newlist);
+		}
+		ft_lstadd_back(&newlist, temp);
+		lst = lst->next;
 	}
-	ft_lstadd_back(&newlist, (lst + i));
-	ft_lstclear(&lst, del);
 	return (newlist);
 }

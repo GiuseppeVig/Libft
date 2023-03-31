@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:24:33 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/03/29 18:06:58 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/03/31 20:20:18 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	i;
+	t_list	*temp;
 
-	i = 0;
-	if (!(*lst)->content)
+	if (new == NULL || lst == NULL)
+		return ;
+	if (*lst == NULL)
 	{
-		(*lst) = new;
+		*lst = new;
 		return ;
 	}
-	while (!(*lst)->next)
-		(*lst) = (*lst)->next;
-	(*lst)->next = new;
+	temp = ft_lstlast(*lst);
+	temp->next = new;
 }
