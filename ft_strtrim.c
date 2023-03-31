@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:49:34 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/03/31 19:31:44 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/03/31 22:01:26 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ char	*ft_strtrim(char const *s, char const *set)
 		i ++;
 	while (j > i && ft_strchr(set, s[j]))
 		j --;
-	trimmedstr = (char *)malloc((j - i) + 1);
+	trimmedstr = ft_substr(s, i, j - i + 1);
 	if (!trimmedstr)
 		return (0);
-	trimmedstr = ft_substr(s, i, j - i + 1);
 	return (trimmedstr);
 }

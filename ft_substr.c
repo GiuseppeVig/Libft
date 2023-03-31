@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:49:47 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/03/31 18:31:38 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/03/31 22:44:07 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (start > (unsigned int)ft_strlen(s))
 		return (ft_strdup(""));
+	if (!s)
+		return (NULL);
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
 	substr = (char *)malloc(len + 1);
 	if (!substr)
 		return (0);
