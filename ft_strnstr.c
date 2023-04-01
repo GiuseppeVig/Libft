@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:26:19 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/03/28 17:32:46 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/04/01 01:08:15 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_strnstr(const char *dest, const char *to_find, size_t n)
 	i = 0;
 	if (!ft_strlen(to_find))
 		return ((char *)dest);
+	if (!n)
+		return (NULL);
 	while (dest[i] && i < n)
 	{
 		j = 0;
