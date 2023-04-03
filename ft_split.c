@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:51:45 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/03/31 16:09:54 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:07:50 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static char	*ft_strndup(const char *to_copy, int i, int j)
 	char	*copy;
 	int		n;
 
+	if (!to_copy)
+		return (0);
 	n = 0;
 	copy = (char *)malloc(i - j + 1);
 	while (j < i)
@@ -49,7 +51,7 @@ static char	*ft_strndup(const char *to_copy, int i, int j)
 	return (copy);
 }
 
-char	**ft_split(char const *s, char c)
+static char	**ft_resolve(char const *s, char c)
 {
 	char	**words;
 	int		i;
@@ -64,16 +66,26 @@ char	**ft_split(char const *s, char c)
 	while (s[i])
 	{
 		while (s[i] == c)
-			i ++;
+			i++;
 		j = i;
 		while (s[i] != c && s[i])
 			i ++;
 		if (i > j)
 		{
 			words[k] = ft_strndup(s, i, j);
-			k ++;
+			k++;
 		}
 	}
 	words[k] = NULL;
+	return (words);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**words;
+
+	if (!s)
+		return (0);
+	words = ft_resolve(s, c);
 	return (words);
 }
